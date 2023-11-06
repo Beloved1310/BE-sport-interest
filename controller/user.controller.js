@@ -1,8 +1,4 @@
 
-// const accountSid = "AC8bd88f02c714065f775b839afcc9a702";
-// const authToken = "15c8027b6535ee0f3d2687aaba6beac8";
-// const verifySid = "VAbef3dd16946050265d2503eb4bdb9cde";
-// const client = require("twilio")(accountSid, authToken);
 const emailData = require('../utilis/sendEmail');
 const activationEmail = require('../utilis/emailactivation');
 const userValidation = require('../validation/user.validation');
@@ -11,7 +7,8 @@ const userService = require('../service/user.service');
 const {initiateVerification,checkVerification } = require('../utilis/otp')
 const jwt = require('jsonwebtoken');
 const {sendEmailFunc} = require('../utilis/sendEmail');
-const ResponseService =require('../service/response.service')
+const ResponseService =require('../service/response.service');
+const { updateUser } = require('../repository/user.repository');
 
 module.exports = {
 async register (req, res) {
@@ -23,9 +20,7 @@ async register (req, res) {
   await userService.registerUser(value)
   await initiateVerification(`+${phone.countryCode}${phone.localFormat}`, 'sms')
   const token = jwt.sign({ email }, process.env.ACTIVATION_KEY);
-
   await emailData(email, username, token, host);
- 
   return ResponseService.success(res, 'Email has been sent, kindly activate your email');
 },
 
@@ -58,5 +53,20 @@ async login (req, res){
    await userService.resetPassword(value)
    return ResponseService.success(res, 'Password Updated');
 
+  },
+
+  async updateUser(req, res){
+    const { user } = req.user;
+    const { value, error } = userValidation.login.validate(req.body);
+    if (error) return res.status(400).send({ error: error.details[0].message })
+    await userService.updateUser(value)
+   return ResponseService.success(res, 'Password Updated');
+  },
+  async getUser(req, res){
+    const { user } = req.user;
+    const { value, error } = userValidation.login.validate(req.body);
+    if (error) return res.status(400).send({ error: error.details[0].message })
+    await userService.updateUser(value)
+   return ResponseService.success(res, 'Password Updated');
   }
 }

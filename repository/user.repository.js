@@ -9,8 +9,8 @@ module.exports = {
   async createdUser(queryParams){
     return User.create(queryParams)
   },
-  
+
   async updateUser(queryParams){
-    return User.update(queryparams)
+    return User.updateOne(queryparams)
   }
 }
