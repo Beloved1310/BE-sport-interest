@@ -64,7 +64,7 @@ const emailData = (email, username, token, host) => {
   };
   return data;
 };
-const sendEmail = async (email, token) => {
- await transporter.sendMail(emailData(email, token));
+const sendEmail = async (email, username, token, host) => {
+ await transporter.sendMail(emailData(email, username, token, host));
 };
 module.exports = sendEmail;

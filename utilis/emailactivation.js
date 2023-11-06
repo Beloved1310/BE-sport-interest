@@ -9,7 +9,7 @@ const activate = (email, host) => {
   return data;
 };
 
-const activationData = async (email, req) => {
-  await transporter.sendMail(activate(email, req));
+const activationData = async (email, host) => {
+  await transporter.sendMail(activate(email, host));
 };
 module.exports = activationData;
