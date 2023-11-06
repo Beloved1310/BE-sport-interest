@@ -9,6 +9,7 @@ require('./startup/db')()
 
 
 const user = require('./routes/user')
+const sport = require('./routes/sport')
 
 process.on('unhandledRejection', (err) => {
   console.log(err, 'Unhandled Rejection at Promise')
@@ -24,6 +25,7 @@ app.use(cors({ origin: '*' }))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json({ limit: '50mb' }))
 app.use('/api/user', user)
+app.use('/api/sport', sport)
 
 app.listen(PORT, () => {
   console.log(`Web server is running ${PORT}`)
