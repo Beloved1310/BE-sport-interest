@@ -61,4 +61,10 @@ module.exports = {
     const updatedUser = await userRepository.updateUserData(updateUser, {_id});
     return updatedUser;
   },
+
+  async getUser (_id){
+  const userProfile = await  userRepository.getOneUser({_id})
+  const { password, ...profile} = userProfile.toObject()
+  return profile
+  }
 };

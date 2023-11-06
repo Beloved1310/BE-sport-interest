@@ -62,28 +62,27 @@ module.exports = {
   },
 
   async updateUser(req, res) {
-    const { user } = req;
-    const { value, error } = userValidation.update.validate(req.body);
-    if (error) return res.status(400).send({ error: error.details[0].message });
-    await userService.updateUser(value, user);
-    return ResponseService.success(res, `$(user.username}, your data is updated`);
-  },
-
-  async getUser(req, res) {
     const host = 'localhost:3000'
-    const { username } = req.user;
-    const { value, error } = userValidation.login.validate(req.body);
+    const { user } = req;
+  const {phoneNumber, username} = req.user
+    const { value, error } = userValidation.update.validate(req.body);
     if (error) return res.status(400).send({ error: error.details[0].message });
     if (value.email){
       const {email} = value
       await initiateVerification(
-        `+${phone.countryCode}${phone.localFormat}`,
+        `+${phoneNumber}`,
         "sms"
       );
       const token = jwt.sign({ email }, process.env.ACTIVATION_KEY);
       await emailData(email, username, token, host);
     }
-    await userService.updateUser(value);
-    return ResponseService.success(res, "Password Updated");
+    await userService.updateUser(value, user);
+    return ResponseService.success(res,`${username}, your data is updated`);
+  },
+
+  async getUser(req, res) {
+    const {_id, username} = req.user
+    const data = await userService.getUser(_id)
+    return ResponseService.success(res, `${username}, profile`, data);
   },
 };

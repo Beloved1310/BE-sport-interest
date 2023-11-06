@@ -12,5 +12,6 @@ router.post('/login', asyncMiddleware(userController.login));
 router.post('/authentication/activate', asyncMiddleware(userController.emailActivation));
 router.put('/reset-password', asyncMiddleware(userController.resetPassword));
 router.put('/settings/update', auth,asyncMiddleware(userController.updateUser));
+router.get('/', auth,asyncMiddleware(userController.getUser));
 
 module.exports = router;
