@@ -1,4 +1,5 @@
 
+const { query } = require('express')
 const User = require('../model/user')
 
 module.exports = {
@@ -11,6 +12,14 @@ module.exports = {
   },
 
   async updateUser(queryParams){
-    return User.updateOne(queryparams)
+    return User.updateOne(queryParams)
+  },
+  async updateUserData (queryParams, fields){
+    return User.updateOne(
+      fields,
+      {
+        $set: queryParams
+      }
+    )
   }
 }

@@ -30,6 +30,7 @@ UserSchema.methods.generateAuthToken = function generatedToken() {
       _id: this._id,
       username: this.fullname,
       email: this.email,
+      phoneNumber : this.phoneNumber
     },
     process.env.JWT
   );
