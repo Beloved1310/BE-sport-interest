@@ -55,8 +55,8 @@ const emailData = (email, username, token, host) => {
         </div>
         <div class="email-content">
           <p><strong>Hello, ${username}</p>
-          <p>At <strong>Sport Nation</strong>we prioritize your gamming life and we would love to make you win!</p>
-          <p> Click on this <a href = "https://${host}/authentication/activate/${token}">link </a>to verify your email address</p>
+          <p>At <strong>Sport Nation,</strong> we prioritize your gamming life and we would love to make you win!</p>
+          <p> Click on this <a href = "https://${host}/verify/${token}">link </a>to verify your email address</p>
         </div>
       </div>
     </body>

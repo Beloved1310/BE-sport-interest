@@ -12,7 +12,7 @@ module.exports = {
     const { value, error } = userValidation.create.validate(req.body);
     if (error) return res.status(400).send({ error: error.details[0].message });
     const { phone, email, username } = value;
-    const { host } = req.headers;
+    const  host = 'localhost:3000';
     value.phoneNumber = `${phone.countryCode}${phone.localFormat}`;
     await userService.registerUser(value);
     await initiateVerification(
