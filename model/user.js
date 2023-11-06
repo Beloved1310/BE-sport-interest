@@ -4,20 +4,22 @@ const { JWT } = require('../config');
 
 const UserSchema = new mongoose.Schema(
   {
-    fullname: {
-      type: String,
-      required: true,
-    },
     email: {
       type: String,
       required: true,
+    },
+    phoneNumber: {
+      type:String
     },
     password: {
       type: String,
       required: true,
     },
-    gender: String,
-    isAdmin: { type: Boolean, default: false },
+    sportInterest : String,
+    firstName: String,
+    lastName: String,
+    address: String,
+    username: String,
   },
   { timestamps: true }
 );
@@ -26,11 +28,10 @@ UserSchema.methods.generateAuthToken = function generatedToken() {
   const token = jwt.sign(
     {
       _id: this._id,
-      fullname: this.fullname,
+      username: this.fullname,
       email: this.email,
-      isAdmin: this.isAdmin,
     },
-    JWT
+    process.env.JWT
   );
   return token;
 };

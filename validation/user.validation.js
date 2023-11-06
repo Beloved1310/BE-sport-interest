@@ -4,7 +4,8 @@ const passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]*)(?=.*[!@#$%
 module.exports = {
   create: Joi.object({
     email: Joi.string().email(),
-    phoneNumber: Joi.object({
+    username: Joi.string(),
+    phone: Joi.object({
       countryCode: Joi.number().greater(0).required(),
       localFormat: Joi.string().min(6).required(),
     }),
@@ -14,7 +15,6 @@ module.exports = {
     confirm_password: Joi.any().equal(Joi.ref("password")).messages({ "any.only": "{{#label}} does not match" }),
     sportInterest: Joi.string().min(2).optional(),
   })
-    .xor("email", "phoneNumber")
     .with("password", "confirm_password"),
 
 

@@ -1,11 +1,16 @@
-const { NotFoundError } = require('../utils/error.utils')
-const { STATUSES } = require('../models/status')
+
 const User = require('../model/user')
 
 module.exports = {
-  async getOneUser({ queryParams }) {
-    return User.findOne({
-      where: queryParams,
-    })
+  async getOneUser(queryParams ) {
+    return User.findOne(queryParams)
   },
+
+  async createdUser(queryParams){
+    return User.create(queryParams)
+  },
+  
+  async updateUser(queryParams){
+    return User.update(queryparams)
+  }
 }
