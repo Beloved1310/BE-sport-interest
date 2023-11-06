@@ -12,6 +12,7 @@ if (!TWILIO_ACCOUNT_SID || !TWILIO_AUTH_TOKEN) {
 const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_VERIFY_SID);
 
 async function initiateVerification( to, channel ) {
+ 
   try {
     const verification = await client.verify.v2
       .services(TWILIO_VERIFY_SID)

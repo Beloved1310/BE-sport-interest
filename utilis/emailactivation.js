@@ -1,10 +1,10 @@
 const transporter = require('./mail');
-const activate = (email, req) => {
+const activate = (email, host) => {
   const data = {
     to: email,
     from: 'adeoluwafisayomi@gmail.com',
     subject: 'Confirmation Email',
-    html: `<p> Welcome to Sport Website, Do proceed to the <a href = "https://${req.headers.host}/login">Login Page</a></p>`,
+    html: `<p> Welcome to Sport Website, Do proceed to the <a href = "https://${host}/login">Login Page</a></p>`,
   };
   return data;
 };

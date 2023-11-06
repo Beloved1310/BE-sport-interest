@@ -17,7 +17,7 @@ module.exports = {
 
   async loginUser (value){
     const {email, password} = value
-    const user = await User.findOne({ email });
+    const user =  await userRepository.getOneUser({ email });
     if (!user) throw new ValidationError("username or password not found");
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword)  throw new ValidationError("username or password not found ");
@@ -28,7 +28,7 @@ module.exports = {
   async resetPassword(value){
     const {username, password} = values
     const userNameStored = await userRepository.getOneUser({username});
-    if ( !userEmailStored) throw new NotFoundError("Username not Found");
+    if (!userNameStored ) throw new NotFoundError("Username not Found");
     const updatePassword = {
       username
     }

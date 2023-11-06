@@ -25,9 +25,17 @@ module.exports = {
       localFormat: Joi.string().min(6).required(),
     }),
     password: Joi.string().required().max(70),
-    rememberMe: Joi.boolean().optional(),
-    refreshToken: Joi.string().optional(),
   }).xor("email", "phoneNumber"),
+
+  verify: Joi.object({
+    token: Joi.string().email(),
+    phoneNumber: Joi.object({
+      countryCode: Joi.number().greater(0).required(),
+      localFormat: Joi.string().min(6).required(),
+    }),
+    otp: Joi.number().required()
+  }),
+  
   reset: Joi.object({
     email: Joi.string().email(),
     phoneNumber: Joi.object({
