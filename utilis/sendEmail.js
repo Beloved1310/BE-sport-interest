@@ -1,9 +1,9 @@
-const transporter = require('./mail');
+const transporter = require("./mail");
 
 const emailData = (email, username, token, host) => {
   const data = {
     to: email,
-    from: 'adeoluwafisayomi@gmail.com',
+    from: "adeoluwafisayomi@gmail.com",
     subject: `Email Activation`,
     html: ` <!DOCTYPE html>
     <html lang="en">
@@ -65,6 +65,6 @@ const emailData = (email, username, token, host) => {
   return data;
 };
 const sendEmail = async (email, username, token, host) => {
- await transporter.sendMail(emailData(email, username, token, host));
+  await transporter.sendMail(emailData(email, username, token, host));
 };
 module.exports = sendEmail;
