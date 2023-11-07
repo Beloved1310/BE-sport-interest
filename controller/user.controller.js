@@ -43,14 +43,14 @@ module.exports = {
     const { value, error } = userValidation.verify.validate(req.body);
     if (error) return res.status(400).send({ error: error.details[0].message });
     const { token, otp, phone } = value;
-    const { host } = req.headers;
+    const  host = 'localhost:3000';
     await checkVerification(`+${phone.countryCode}${phone.localFormat}`, otp);
     const decodedToken = jwt.verify(token, process.env.ACTIVATION_KEY);
     const { email } = decodedToken;
      await activationEmail(email, host);
      return ResponseService.success(
       res,
-      "Email Activated", data
+      "Email Activated, kindly check your mail"
     );
   },
 

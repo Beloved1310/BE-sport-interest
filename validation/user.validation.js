@@ -28,8 +28,8 @@ module.exports = {
   }).xor("email", "phoneNumber"),
 
   verify: Joi.object({
-    token: Joi.string().email(),
-    phoneNumber: Joi.object({
+    token: Joi.string().required(),
+    phone: Joi.object({
       countryCode: Joi.number().greater(0).required(),
       localFormat: Joi.string().min(6).required(),
     }),
