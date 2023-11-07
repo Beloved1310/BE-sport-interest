@@ -1,7 +1,6 @@
 const userRepository = require("../repository/user.repository");
 const ValidationError = require("../utilis/validation-error");
 const NotFoundError = require("../utilis/exists-error");
-const { initiateVerification, checkVerification } = require("../utilis/otp");
 const bcrypt = require("bcrypt");
 
 module.exports = {
