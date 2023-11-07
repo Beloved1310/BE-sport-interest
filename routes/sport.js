@@ -11,6 +11,6 @@ const upload = multer({ storage });
 
 
 router.post("/", upload.single('image'), asyncMiddleware(sportController.createSport));
-router.get("/", auth, asyncMiddleware(sportController.getSports));
+router.get("/getAll", auth, asyncMiddleware(sportController.getSports));
 
 module.exports = router;
