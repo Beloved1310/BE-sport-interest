@@ -27,7 +27,7 @@ const activate = (email, host) => {
         }
     
         .email-header {
-          background-color: #3a66ad;
+          background-color: #647dee;
           color: #fff;
           text-align: center;
           padding: 10px;
@@ -43,7 +43,7 @@ const activate = (email, host) => {
         }
     
         strong {
-          color: #3a66ad;
+          color: #647dee;
         }
       </style>
     </head>

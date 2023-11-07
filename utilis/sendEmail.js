@@ -28,7 +28,7 @@ const emailData = (email, username, token, host) => {
         }
 
         .email-header {
-          background-color: #3a66ad;
+          background-color: #647dee;
           color: #fff;
           text-align: center;
           padding: 10px;
@@ -44,7 +44,7 @@ const emailData = (email, username, token, host) => {
         }
 
         strong {
-          color: #3a66ad;
+          color: #647dee;
         }
       </style>
     </head>
