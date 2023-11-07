@@ -79,7 +79,8 @@ module.exports = {
       await emailData(email, username, token, host);
     }
     await userService.updateUser(value, user);
-    return ResponseService.success(res,`${username}, your data is updated`);
+    const displayUsername = value.username || username;
+    return ResponseService.success(res,`${displayUsername}, your data is updated`);
   },
 
   async getUser(req, res) {
