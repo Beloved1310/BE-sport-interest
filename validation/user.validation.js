@@ -33,14 +33,14 @@ module.exports = {
       localFormat: Joi.string().min(6).required(),
     }),
     password: Joi.string()
-    .pattern(passwordRegex)
-    .max(70)
-    .messages({
-      "string.pattern.match": '"password" must be stronger',
-      "string.pattern.base":
-        'The "password" must meet the specified criteria: at least one lowercase letter, one uppercase letter, one digit, one special character, and a minimum length of 8 characters.',
-    })
-    .required(),
+      .pattern(passwordRegex)
+      .max(70)
+      .messages({
+        "string.pattern.match": '"password" must be stronger',
+        "string.pattern.base":
+          'The "password" must meet the specified criteria: at least one lowercase letter, one uppercase letter, one digit, one special character, and a minimum length of 8 characters.',
+      })
+      .required(),
   }).xor("email", "phone"),
 
   verify: Joi.object({
@@ -55,26 +55,28 @@ module.exports = {
   reset: Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string()
-    .pattern(passwordRegex)
-    .max(70)
-    .messages({
-      "string.pattern.match": '"password" must be stronger',
-      "string.pattern.base":
-        'The "password" must meet the specified criteria: at least one lowercase letter, one uppercase letter, one digit, one special character, and a minimum length of 8 characters.',
-    })
-    .required(),
+      .pattern(passwordRegex)
+      .max(70)
+      .messages({
+        "string.pattern.match": '"password" must be stronger',
+        "string.pattern.base":
+          'The "password" must meet the specified criteria: at least one lowercase letter, one uppercase letter, one digit, one special character, and a minimum length of 8 characters.',
+      })
+      .required(),
   }),
 
   update: Joi.object({
     email: Joi.string().email().allow("", null).optional(),
     username: Joi.string().allow("", null).optional(),
     password: Joi.string()
-    .pattern(passwordRegex)
-    .max(70)
-    .messages({
-      "string.pattern.match": '"password" must be stronger',
-      "string.pattern.base":
-        'The "password" must meet the specified criteria: at least one lowercase letter, one uppercase letter, one digit, one special character, and a minimum length of 8 characters.',
-    }).allow("", null).optional(),
+      .pattern(passwordRegex)
+      .max(70)
+      .messages({
+        "string.pattern.match": '"password" must be stronger',
+        "string.pattern.base":
+          'The "password" must meet the specified criteria: at least one lowercase letter, one uppercase letter, one digit, one special character, and a minimum length of 8 characters.',
+      })
+      .allow("", null)
+      .optional(),
   }),
 };
