@@ -53,7 +53,7 @@ const activate = (email, host) => {
           <h2>Your account is activated!</h2>
         </div>
         <div class="email-content">
-        <p> Welcome to Sport Website, Do proceed to the <a href = "https://${host}/login">Login Page</a></p>
+        <p> Welcome to Sport Website, Do proceed to the <a href = "http://localhost:3000/${host}/login">Login Page</a></p>
         </div>
       </div>
     </body>

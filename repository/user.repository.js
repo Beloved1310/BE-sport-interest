@@ -1,25 +1,27 @@
-
-const { query } = require('express')
-const User = require('../model/user')
+// Import necessary modules and dependencies
+const { query } = require("express");
+const User = require("../model/user");
 
 module.exports = {
-  async getOneUser(queryParams ) {
-    return User.findOne(queryParams)
+  // Find and return a single user based on query parameters
+  async getOneUser(queryParams) {
+    return User.findOne(queryParams);
   },
 
-  async createdUser(queryParams){
-    return User.create(queryParams)
+  // Create a new user with the provided query parameters
+  async createdUser(queryParams) {
+    return User.create(queryParams);
   },
 
-  async updateUser(queryParams){
-    return User.updateOne(queryParams)
+  // Update a user based on the provided query parameters
+  async updateUser(queryParams) {
+    return User.updateOne(queryParams);
   },
-  async updateUserData (queryParams, fields){
-    return User.updateOne(
-      fields,
-      {
-        $set: queryParams
-      }
-    )
-  }
-}
+
+  // Update user data using the specified query parameters and field values
+  async updateUserData(queryParams, fields) {
+    return User.updateOne(fields, {
+      $set: queryParams,
+    });
+  },
+};
