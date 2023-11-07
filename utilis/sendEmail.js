@@ -56,7 +56,7 @@ const emailData = (email, username, token, host) => {
         <div class="email-content">
           <p><strong>Hello, ${username}</p>
           <p>At <strong>Sport Nation,</strong> we prioritize your gamming life and we would love to make you win!</p>
-          <p> Click on this <a href = "http://localhost:3000/verify/${token}">link </a>to verify your email address</p>
+          <p> Click on this <a href = "https://sport-nation-app.netlify.app/verify/${token}">link </a>to verify your email address</p>
         </div>
       </div>
     </body>
