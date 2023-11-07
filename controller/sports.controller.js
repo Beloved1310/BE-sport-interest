@@ -21,7 +21,7 @@ module.exports = {
   },
 
   async getSports(req, res) {
-    const data = await Sport.find().select("-_id");
+    const data = await Sport.find();
     return res.send({ message: "Sports", data });
   },
 };
