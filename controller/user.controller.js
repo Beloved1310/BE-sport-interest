@@ -30,9 +30,11 @@ module.exports = {
   async login(req, res) {
     const { value, error } = userValidation.login.validate(req.body);
     if (error) return res.status(400).send({ error: error.details[0].message });
-    const { email, password } = value;
-    const token = await userService.loginUser(value);
-    const data = { email, token };
+    const { email, password, phone } = value;
+    if (phone){
+      value.phoneNumber = `${phone.countryCode}${phone.localFormat}`;
+    }
+    const data = await userService.loginUser(value);
     return ResponseService.success(
       res,
       "Login Successful", data

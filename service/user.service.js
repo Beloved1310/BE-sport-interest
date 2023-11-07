@@ -18,14 +18,22 @@ module.exports = {
   },
 
   async loginUser(value) {
-    const { email, password } = value;
-    const user = await userRepository.getOneUser({ email });
+    let user;
+    const { email, password, phoneNumber } = value;
+    if (email) {
+      user = await userRepository.getOneUser({ email });
+    }
+
+    if (phoneNumber) {
+      user = await userRepository.getOneUser({ phoneNumber });
+    }
+
     if (!user) throw new ValidationError("username or password not found");
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword)
       throw new ValidationError("username or password not found ");
     const token = user.generateAuthToken();
-    return token;
+    return { username: user.username, token };
   },
 
   async resetPassword(value) {
@@ -35,13 +43,15 @@ module.exports = {
     const updatePassword = {};
     const salt = await bcrypt.genSalt(10);
     updatePassword.password = await bcrypt.hash(password, salt);
-    const updatedUser = await userRepository.updateUserData(updatePassword, {email});
+    const updatedUser = await userRepository.updateUserData(updatePassword, {
+      email,
+    });
     return updatedUser;
   },
 
   async updateUser(value, user) {
-   const {_id} = user
-     const updateUser = {};
+    const { _id } = user;
+    const updateUser = {};
 
     if (value.username) {
       updateUser.username = value.username;
@@ -58,13 +68,15 @@ module.exports = {
     if (value.phone) {
       updateUser.phoneNumber = `${phone.countryCode}${phone.localFormat}`;
     }
-    const updatedUser = await userRepository.updateUserData(updateUser, {_id});
+    const updatedUser = await userRepository.updateUserData(updateUser, {
+      _id,
+    });
     return updatedUser;
   },
 
-  async getUser (_id){
-  const userProfile = await  userRepository.getOneUser({_id})
-  const { password, ...profile} = userProfile.toObject()
-  return profile
-  }
+  async getUser(_id) {
+    const userProfile = await userRepository.getOneUser({ _id });
+    const { password, ...profile } = userProfile.toObject();
+    return profile;
+  },
 };
