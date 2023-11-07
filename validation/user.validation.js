@@ -66,7 +66,7 @@ module.exports = {
   }),
 
   update: Joi.object({
-    email: Joi.string().email(),
+    email: Joi.string().email().optional(),
     username: Joi.string(),
     password: Joi.string()
     .pattern(passwordRegex)
